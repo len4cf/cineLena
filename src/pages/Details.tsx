@@ -2,17 +2,14 @@ import { useEffect, useState } from "react"
 import { Movie } from "../types/Movie"
 import { token } from "../config/token"
 import { useParams } from "react-router-dom"
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
-import { CircularProgress, Spinner } from "@chakra-ui/react"
+import { CircularProgress } from "@chakra-ui/react"
 
 const DetailsPage = () => {
-  const [toggleSeeMore, setToggleSeeMore] = useState<boolean>(false)
   const [genres, setGenres] = useState<string[]>([])
   const [load, setLoad] = useState(false)
-  const [show, setShow] = useState("hide")
 
   const [movieId, setMovieId] = useState<Movie>({
-    original_title: "",
+    title: "",
     id: 0,
     poster_path: "",
     overview: "",
@@ -31,14 +28,13 @@ const DetailsPage = () => {
 
   useEffect(() => {
     setLoad(true)
-    setTimeout(() => setShow("show"), 20)
 
     fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
       .then((data) => data.json())
       .then((data) => {
         setMovieId(data)
         setGenres(data.genres.map((genre: { name: string }) => genre.name))
-        setTimeout(() => setLoad(false), 5000)
+        setTimeout(() => setLoad(false), 600)
       })
       .catch((err) => console.error(err))
   }, [id])
@@ -46,23 +42,24 @@ const DetailsPage = () => {
   return (
     <>
       {load && (
-        <div className="text-center h-screen flex justify-center">
-          <CircularProgress color="yellow" className="" isIndeterminate />
+        <div className="text-center">
+          <CircularProgress color="yellow" className="md:mt-[15%] mt-[50%]" isIndeterminate />
         </div>
       )}
       {!load && (
-        <div className="flex justify-center gap-10 mt-14 ">
+        <>
+        <div className="flex justify-center gap-10 mt-14 md:flex-row flex-col md:items-start items-center">
           <img
             src={`https://image.tmdb.org/t/p/w500${movieId.poster_path}`}
             alt=""
-            className="w-[300px] h-auto rounded-lg"
+            className="md:w-[300px] w-[180px] h-auto rounded-lg"
           />
           <div className="w-[500px] flex flex-col gap-3">
-            <div className="flex items-center gap-4">
-              <h1 className="text-yellow-500 font-bold text-4xl">
-                {movieId.original_title}
+            <div className="flex md:items-start items-center gap-4 flex-col">
+              <h1 className="text-yellow-500 font-bold md:text-4xl text-xl">
+                {movieId.title}
               </h1>
-              <div>
+              <div className="md:mb-0 mb-4">
                 {genres.map((genre) => (
                   <span className="font-regular mr-3 text-yellow-200 bg-zinc-900 p-2 text-[12px]">
                     {genre}
@@ -70,20 +67,12 @@ const DetailsPage = () => {
                 ))}
               </div>
             </div>
-            <p className="text-yellow-500 font-thin">{movieId.overview}</p>
-            <p className="text-white font-bold">⭐{movieId.vote_average}</p>
-            <p
-              className="text-yellow-500 cursor-pointer flex items-center gap-2"
-              onClick={() => setToggleSeeMore(!toggleSeeMore)}
-            >
-              Veja {toggleSeeMore ? "menos" : "mais"} sobre o filme{" "}
-              {toggleSeeMore ? <IoIosArrowDown /> : <IoIosArrowUp />}
-            </p>
-            {toggleSeeMore && (
-              <div className="text-white font-thin bg-zinc-800 p-4 rounded-md"></div>
-            )}
+            <p className="text-yellow-500 font-thin md:m-0 m-auto md:w-fit w-[300px]">{movieId.overview}</p>
+            <p className="text-white font-bold md:m-0 m-auto ">⭐{movieId.vote_average}</p>
+
           </div>
         </div>
+        </>
       )}
     </>
   )

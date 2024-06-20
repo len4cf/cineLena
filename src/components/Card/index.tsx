@@ -1,7 +1,7 @@
 import { Movie } from "../../types/Movie"
 import { useNavigate } from "react-router-dom"
 
-const Card = ({ poster_path, original_title, id }: Movie) => {
+const Card = ({ poster_path, title, id }: Movie) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -18,7 +18,7 @@ const Card = ({ poster_path, original_title, id }: Movie) => {
           onClick={() => handleClick()}
         />
       </div>
-      <h4 className="text-white max-w-full break-words">{original_title}</h4>
+      <h4 className="text-white max-w-full break-words">{title}</h4>
     </div>
   )
 }
