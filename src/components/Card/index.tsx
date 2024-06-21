@@ -9,11 +9,14 @@ const Card = ({ poster_path, title, id }: Movie) => {
   }
 
   return (
-    <div className="w-[200px] flex flex-col items-center mx-auto" key={id}>
+    <div
+      className="w-[200px] flex flex-col items-center mx-auto cursor-pointer"
+      key={id}
+    >
       <div className="relative group">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-          alt=""
+          alt="Poster_filme"
           className="w-full h-auto relative z-0 rounded-lg transition-all duration-300 hover:scale-110 mb-6"
           onClick={() => handleClick()}
         />

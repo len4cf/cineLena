@@ -54,15 +54,19 @@ export default function NowPlaying() {
   return (
     <>
       {load && (
-            <div className="text-center">
-            <CircularProgress color="yellow" className="md:mt-[15%] mt-[50%]" isIndeterminate />
-          </div>
+        <div className="text-center">
+          <CircularProgress
+            color="green"
+            className="md:mt-[15%] mt-[50%]"
+            isIndeterminate
+          />
+        </div>
       )}
       {!load && (
         <>
-          <h1 className="text-center mt-2 text-yellow-500 text-2xl font-bold">
-          Em cartaz
-        </h1>
+          <h1 className="text-center mt-2 text-green-500 text-2xl font-bold">
+            Em cartaz
+          </h1>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-10 hover:">
             {movies.map((movie) => {
               return (
@@ -75,17 +79,28 @@ export default function NowPlaying() {
             })}
           </div>
           <div className="flex justify-center mt-10 gap-3 items-center pb-5">
-            <button className="bg-yellow-500 p-2 rounded" onClick={handlePreviousPage} disabled={page === 1}>
+            <button
+              className={`p-2 rounded ${
+                page === 1 ? "bg-zinc-400" : "bg-green-500 "
+              }`}
+              onClick={handlePreviousPage}
+              disabled={page === 1}
+            >
               <FaArrowLeft />
             </button>
-            <p className="text-yellow-500">{page}</p>
-            <button onClick={handleNextPage} disabled={page === totalPages} className={`bg-yellow-500 p-2 rounded ${page === totalPages ? 'bg-zinc-400' : ''}`}>
-              <FaArrowRight  color="black" />
+            <p className="text-green-500">{page}</p>
+            <button
+              onClick={handleNextPage}
+              disabled={page === totalPages}
+              className={`bg-green-500 p-2 rounded ${
+                page === totalPages ? "bg-zinc-300" : ""
+              }`}
+            >
+              <FaArrowRight color="black" />
             </button>
           </div>
         </>
       )}
-      
     </>
   )
 }

@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom"
+import Footer from "../Footer"
 import Header from "../Header"
 import SearchBar from "../SearchBar"
 
@@ -6,12 +8,16 @@ type BaseLayoutProps = {
 }
 
 const BaseLayout = ({ children }: BaseLayoutProps) => {
+  const location = useLocation()
+
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <SearchBar />
-      {children}
-      {/* <Footer /> */}
+      {location.pathname === "/" || location.pathname === "/mostpopular" ? (
+        <SearchBar />
+      ) : null}
+      <main className="flex-grow">{children}</main>
+      <Footer />
     </div>
   )
 }
