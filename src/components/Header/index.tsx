@@ -4,7 +4,6 @@ const Header = () => {
   return (
     <header className="bg-zinc-900 shadow-xl">
       <div className="py-3 flex md:flex-row flex-col items-center justify-around text-white">
-        
         <Link to={"/"}>
           <h1 className="shrikhand text-2xl">
             Cine<span className="text-green-500 shrikhand">Lena 📽️</span>
@@ -16,6 +15,9 @@ const Header = () => {
           </Link>
           <Link className="hover:bg-zinc-800 p-3 rounded" to={"/mostpopular"}>
             Populares
+          </Link>
+          <Link className="hover:bg-zinc-800 p-3 rounded" to={"/search"}>
+            Procure por...
           </Link>
         </nav>
       </div>

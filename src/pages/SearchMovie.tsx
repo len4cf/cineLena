@@ -36,16 +36,16 @@ const SearchMoviePage = () => {
   return (
     <>
       <div>
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-3 items-center md:flex-row flex-col mt-4">
           <input
             type="text"
-            className="text-center p-4 text-xl bg-zinc-700 letter"
+            className="text-xl bg-zinc-700 rounded w-[400px] px-3 py-2"
             placeholder="Pesquise por um filme"
             onChange={handleSearch}
             value={search}
           />
           <button
-            className="bg-green-500 p-4 text-white"
+            className="bg-green-500 px-4 py-2 text-white font-bold rounded"
             onClick={fetchSearchMovie}
           >
             Pesquisar
