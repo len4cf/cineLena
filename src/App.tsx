@@ -3,6 +3,7 @@ import BaseLayout from "./components/BaseLayout"
 import NowPlaying from "./pages/NowPlaying"
 import DetailsPage from "./pages/Details"
 import MostPopularPage from "./pages/MostPopular"
+import SearchMoviePage from "./pages/SearchMovie"
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<NowPlaying />} />
           <Route path="/details/:id" element={<DetailsPage />} />
-          <Route path="/mostpopular" element={<MostPopularPage/>}/>
+          <Route path="/mostpopular" element={<MostPopularPage />} />
+          <Route path="/search" element={<SearchMoviePage />} />
         </Routes>
       </BaseLayout>
     </Router>

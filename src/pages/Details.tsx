@@ -39,6 +39,8 @@ const DetailsPage = () => {
       .catch((err) => console.error(err))
   }, [id])
 
+  const movieAverage = movieId.vote_average?.toFixed(1)
+
   return (
     <>
       {load && (
@@ -75,7 +77,7 @@ const DetailsPage = () => {
                 {movieId.overview}
               </p>
               <p className="text-white font-bold md:m-0 m-auto ">
-                ⭐{movieId.vote_average}
+                ⭐{movieAverage}
               </p>
             </div>
           </div>
